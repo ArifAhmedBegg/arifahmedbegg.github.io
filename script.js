@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const authorEl = document.getElementById("quote-author");
 
         try {
-            const response = await fetch(`https://api.quotable.io/random?${Date.now()}`);
+            const response = await fetch(`https://api.quotable.io/random?cb=${Math.random()}`);
             const data = await response.json();
 
             textEl.innerText = `"${data.content}"`;
@@ -20,15 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error(error);
             textEl.innerText =
-                "In science the important thing is not to stop questioning.";
+                "In science, the important thing is not to stop questioning.";
             authorEl.innerText =
                 "— Albert Einstein";
         }
     }
 
-    // Load first quote immediately
-    loadQuote();
-
-    // Load a new quote every 10 seconds
-    setInterval(loadQuote, 10000);
+    loadQuote(); // loads a new quote automatically on page load
 });

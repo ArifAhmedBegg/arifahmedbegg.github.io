@@ -10,16 +10,23 @@ document.getElementById(sectionId).classList.remove("hidden");
 
 }
 
-async function newQuote(){
+// Function to fetch a random quote
+async function loadQuote() {
+    try {
+        const response = await fetch("https://api.quotable.io/random");
+        const data = await response.json();
 
-const response = await fetch("https://api.quotable.io/random");
-
-const data = await response.json();
-
-document.getElementById("quote-text").innerText = '"' + data.content + '"';
-
-document.getElementById("quote-author").innerText = "— " + data.author;
-
+        document.getElementById("quote-text").innerText = `"${data.content}"`;
+        document.getElementById("quote-author").innerText = `— ${data.author}`;
+    } catch (error) {
+        console.error(error);
+        // Fallback quote
+        document.getElementById("quote-text").innerText =
+            "In science the important thing is not to stop questioning.";
+        document.getElementById("quote-author").innerText =
+            "— Albert Einstein";
+    }
 }
 
-newQuote();
+// Load quote automatically when page loads
+window.onload = loadQuote;

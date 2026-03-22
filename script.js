@@ -3,9 +3,9 @@ function showSection(sectionId) {
 const sections = document.querySelectorAll(".section");
 
 sections.forEach(function(section) {
-section.style.display = "none";
+section.classList.add("hidden");
 });
 
-document.getElementById(sectionId).style.display = "block";
+document.getElementById(sectionId).classList.remove("hidden");
 
 }

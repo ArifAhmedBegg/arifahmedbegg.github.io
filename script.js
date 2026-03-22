@@ -25,3 +25,8 @@ function loadQuote() {
 
 // Run quote on page load
 document.addEventListener("DOMContentLoaded", loadQuote);
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadQuote();
+  setInterval(loadQuote, 10000); // change quote every 10 seconds
+});

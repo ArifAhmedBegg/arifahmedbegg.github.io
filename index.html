@@ -1,70 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Arif Ahmed Begg</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <header>
+
 <h1>Arif Ahmed Begg</h1>
 <p>MSc Chemistry | IIT Kharagpur</p>
 
-
 <nav>
-<a href="#about">About</a>
-<a href="#research">Research</a>
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
+
+<button onclick="showSection('home')">Home</button>
+<button onclick="showSection('about')">About</button>
+<button onclick="showSection('research')">Research</button>
+<button onclick="showSection('projects')">Projects</button>
+<button onclick="showSection('contact')">Contact</button>
+
 </nav>
+
 </header>
 
-<section id="about">
+
+
+<!-- HOME -->
+
+<section id="home" class="section">
 
 <img src="images/profile_photo.jpeg" class="profile">
 
-<h2>About Me</h2>
+<h2>Welcome</h2>
 
 <p>
-I am a second-year M.Sc. Chemistry student at IIT Kharagpur with interests in quantum chemistry, spin systems, EPR spectroscopy, and computational simulations.
+I am a second-year M.Sc. Chemistry student at IIT Kharagpur working in the area of
+quantum chemistry, spin physics, and EPR spectroscopy.
 </p>
 
 </section>
 
-<section id="research">
 
-<h2>Research</h2>
+
+<!-- ABOUT -->
+
+<section id="about" class="section hidden">
+
+<h2>About Me</h2>
+
+<p>
+
+I am interested in computational quantum chemistry, spin Hamiltonians,
+molecular qubits, and magnetic resonance spectroscopy.
+My research focuses on theoretical modelling and simulation of
+spin systems and molecular magnetism.
+
+</p>
+
+</section>
+
+
+
+<!-- RESEARCH -->
+
+<section id="research" class="section hidden">
+
+<h2>Research Interests</h2>
 
 <ul>
 
-<li>
-Spin Hamiltonians and quantum spin simulations
-</li>
+<li>Spin Hamiltonians and quantum spin simulations</li>
 
-<li>
-Electron Paramagnetic Resonance (EPR)
-</li>
+<li>Electron Paramagnetic Resonance (EPR)</li>
 
-<li>
-Computational quantum chemistry
-</li>
+<li>Computational quantum chemistry</li>
 
-<li>
-Molecular qubits
-</li>
+<li>Molecular qubits</li>
 
-<li>
-Molecular dynamics
-</li>
+<li>Molecular dynamics</li>
 
 </ul>
 
 </section>
 
-<section id="projects">
+
+
+<!-- PROJECTS -->
+
+<section id="projects" class="section hidden">
 
 <h2>Projects</h2>
 
@@ -78,28 +111,58 @@ Python simulations of interacting spin systems and dipolar coupling analysis.
 
 </div>
 
+
 <div class="card">
 
 <h3>EPR Spectrum Simulation</h3>
 
 <p>
-Simulation of EPR spectra and analysis of spin-spin interactions.
+Simulation of EPR spectra and analysis of spin–spin interactions.
 </p>
 
 </div>
 
 </section>
 
-<section id="contact">
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="section hidden">
 
 <h2>Contact</h2>
 
-<p>Email: arifahmedbegg.24@kgpian.iitkgp.ac.in</p>
-<p>Alternate email: arifahmedbegg2020@gmail.com</p>
+<p>
+Email:
+<a href="mailto:arifahmedbegg.24@kgpian.iitkgp.ac.in">
+arifahmedbegg.24@kgpian.iitkgp.ac.in
+</a>
+</p>
 
-<p>GitHub: github.com/arifahmedbegg</p>
+<p>
+Alternate email:
+<a href="mailto:arifahmedbegg2020@gmail.com">
+arifahmedbegg2020@gmail.com
+</a>
+</p>
+
+<p>
+GitHub:
+<a href="https://github.com/arifahmedbegg" target="_blank">
+github.com/arifahmedbegg
+</a>
+</p>
+
+<p>
+Google Scholar:
+<a href="https://scholar.google.com" target="_blank">
+Google Scholar Profile
+</a>
+</p>
 
 </section>
+
+
 
 <footer>
 
@@ -107,5 +170,9 @@ Simulation of EPR spectra and analysis of spin-spin interactions.
 
 </footer>
 
+
+<script src="script.js"></script>
+
 </body>
+
 </html>

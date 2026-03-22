@@ -8,22 +8,25 @@ color:#333;
 }
 
 
+/* Header */
+
 header{
 
 background:#1a1a1a;
 color:white;
 text-align:center;
-padding:25px;
+padding:30px 20px;
 
 }
 
+
+/* Navigation */
 
 nav{
 
-margin-top:10px;
+margin-top:12px;
 
 }
-
 
 nav button{
 
@@ -31,28 +34,33 @@ background:none;
 border:none;
 color:white;
 font-size:16px;
-margin:10px;
+margin:6px 12px;
 cursor:pointer;
+padding:6px 12px;
+border-radius:6px;
+transition:0.2s;
 
 }
-
 
 nav button:hover{
 
-color:#00bfff;
+background:#00bfff;
+color:black;
 
 }
 
+
+/* Sections */
 
 .section{
 
 max-width:900px;
 margin:auto;
-padding:40px;
-text-align:center;
+padding:45px 30px;
+text-align:left;
+line-height:1.65;
 
 }
-
 
 .hidden{
 
@@ -61,27 +69,87 @@ display:none;
 }
 
 
+/* Paragraphs */
+
+.section p{
+
+text-align:justify;
+margin-bottom:18px;
+
+}
+
+
+/* Headings */
+
+h2{
+
+margin-bottom:12px;
+font-size:28px;
+
+}
+
+h3{
+
+margin-top:28px;
+margin-bottom:8px;
+font-size:20px;
+
+}
+
+
+/* Lists */
+
+ul{
+
+padding-left:22px;
+margin-top:8px;
+margin-bottom:20px;
+
+}
+
+li{
+
+margin-bottom:6px;
+line-height:1.5;
+
+}
+
+
+/* Profile photo */
+
 .profile{
 
 width:220px;
 height:220px;
 object-fit:cover;
-border-radius:10px;
-margin-top:20px;
+border-radius:12px;
+display:block;
+margin:20px auto;
 
 }
 
+
+/* Cards */
 
 .card{
 
 background:white;
 padding:25px;
-margin:20px;
+margin:20px 0;
 border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.1);
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+transition:0.2s;
 
 }
 
+.card:hover{
+
+transform:translateY(-3px);
+
+}
+
+
+/* Footer */
 
 footer{
 
@@ -89,9 +157,12 @@ text-align:center;
 padding:20px;
 background:#1a1a1a;
 color:white;
+margin-top:40px;
 
 }
 
+
+/* Links */
 
 a{
 
@@ -99,7 +170,6 @@ color:#0077cc;
 text-decoration:none;
 
 }
-
 
 a:hover{
 
@@ -111,6 +181,12 @@ text-decoration:underline;
 /* Mobile friendly */
 
 @media(max-width:600px){
+
+.section{
+
+padding:35px 20px;
+
+}
 
 .profile{
 

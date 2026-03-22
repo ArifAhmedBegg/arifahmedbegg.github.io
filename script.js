@@ -1,13 +1,11 @@
-function showSection(sectionId){
+function showSection(sectionId) {
 
-let sections = document.querySelectorAll(".section");
+const sections = document.querySelectorAll(".section");
 
-sections.forEach(section => {
-
-section.classList.add("hidden");
-
+sections.forEach(function(section) {
+section.style.display = "none";
 });
 
-document.getElementById(sectionId).classList.remove("hidden");
+document.getElementById(sectionId).style.display = "block";
 
 }

@@ -241,27 +241,22 @@ grid-template-columns:repeat(2,1fr);
 }
 
 }
-.quote-box{
 
-margin-top:35px;
-padding:20px 25px;
-border-left:4px solid #00bfff;
-background:#ffffff;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-
+.quote-box {
+  margin-top: 35px;
+  padding: 20px 25px;
+  border-left: 4px solid #00bfff;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
-#quote-text{
-
-font-size:17px;
-font-style:italic;
-margin-bottom:6px;
-
+#quote-text {
+  font-size: 17px;
+  font-style: italic;
+  margin-bottom: 6px;
 }
 
-#quote-author{
-
-font-size:14px;
-color:#666;
-
+#quote-author {
+  font-size: 14px;
+  color: #666;
 }

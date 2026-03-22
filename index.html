@@ -64,15 +64,31 @@ Feel free to explore my research, projects, and academic work through this websi
 
 <!-- Quote Generator -->
 
-<div class="quote-box">
+async function loadQuote() {
 
-<p id="quote-text">Loading quote...</p>
+try {
 
-<p id="quote-author"></p>
+const response = await fetch("https://api.quotable.io/random");
+const data = await response.json();
 
-<button onclick="newQuote()">New Quote</button>
+document.getElementById("quote-text").innerText = '"' + data.content + '"';
+document.getElementById("quote-author").innerText = "— " + data.author;
 
-</div>
+}
+
+catch {
+
+document.getElementById("quote-text").innerText =
+"In science the important thing is not to stop questioning.";
+
+document.getElementById("quote-author").innerText =
+"— Albert Einstein";
+
+}
+
+}
+
+window.onload = loadQuote;
 
 <footer>
 <p>© 2026 Arif Ahmed Begg</p>

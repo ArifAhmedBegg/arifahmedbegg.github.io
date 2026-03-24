@@ -10,7 +10,7 @@ function showSection(sectionId) {
 // Array of quotes
 const quotes = [
   { text: "In science, the important thing is not to stop questioning.", author: "Albert Einstein" },
-  { text: "Do or do not. There is no try.", author: "Yoda" },
+  { text: "There is nothing noble in being superior to your fellow man; true nobility is being superior to your former self.", author: "Ernest Hemingway" },
   { text: "Success is not final, failure is not fatal.", author: "Winston Churchill" },
   { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
   { text: "What we think, we become.", author: "Buddha" }
@@ -30,3 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loadQuote();
   setInterval(loadQuote, 10000); // change quote every 10 seconds
 });
+
+function openImage(img){
+
+document.getElementById("imageViewer").style.display="flex";
+document.getElementById("viewerImg").src=img.src;
+
+}
+
+function closeImage(){
+
+document.getElementById("imageViewer").style.display="none";
+
+}

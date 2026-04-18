@@ -9,16 +9,32 @@ color:#333;
 
 .header-container{
 display:flex;
+flex-direction:column;      /* stack logo+name above nav */
+align-items:center;         /* center horizontally */
+justify-content:center;
+text-align:center;
+}
+
+.left-header{
+display:flex;
+flex-direction:column;   /* logo above name */
 align-items:center;
-justify-content:flex-start;
-gap:10px;
-padding-left:15px;
+gap:8px;
 }
 
 .logo{
-width:40px;
-height:40px;
+width:45px;
+height:45px;
 object-fit:contain;
+}
+
+nav{
+margin-top:10px;
+text-align:center;
+}
+
+nav button{
+margin:0 10px;
 }
 
 .title-block h1{

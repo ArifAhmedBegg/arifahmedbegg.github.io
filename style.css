@@ -16,8 +16,6 @@ padding:20px 0;
 text-align:center;
 }
 
-/* REMOVE any global font overrides if present */
-/* like *{ font-family: ... } */
 
 /* TITLE */
 
@@ -55,8 +53,8 @@ gap:12px;
 /* LOGO */
 
 .logo{
-width:40px;
-height:40px;
+width:60px;
+height:60px;
 object-fit:contain;
 margin:0;
 }

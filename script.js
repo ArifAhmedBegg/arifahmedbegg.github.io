@@ -44,18 +44,36 @@ document.getElementById("imageViewer").style.display="none";
 
 }
 
-function updateTime(){
+function updateDateTime(){
 
 const now = new Date();
 
-const timeString = now.toLocaleTimeString();   // shows local time
+/* Date */
+const date = now.toLocaleDateString('en-IN', {
+weekday: 'long',
+year: 'numeric',
+month: 'long',
+day: 'numeric'
+});
 
-document.getElementById("time-display").innerText = timeString;
+/* Time */
+const time = now.toLocaleTimeString('en-IN', {
+hour12: false
+});
+
+/* Combine */
+const full = date + " | " + time;
+
+/* Put in footer */
+const el = document.getElementById("time-display");
+if(el){
+el.innerText = full;
+}
 
 }
 
-// update every second
-setInterval(updateTime, 1000);
+/* Run continuously */
+setInterval(updateDateTime, 1000);
 
-// run once immediately
-updateTime();
+/* Run once immediately */
+updateDateTime();

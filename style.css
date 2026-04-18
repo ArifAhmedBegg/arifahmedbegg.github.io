@@ -8,13 +8,11 @@ color:#333;
 }
 
 .header-container{
-
 display:flex;
 align-items:center;
 justify-content:flex-start;
-gap:15px;
-padding-left:20px;
-
+gap:10px;
+padding-left:15px;
 }
 
 .logo{

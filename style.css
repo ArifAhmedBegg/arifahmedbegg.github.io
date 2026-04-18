@@ -7,6 +7,39 @@ color:#333;
 
 }
 
+.header-container{
+
+display:flex;
+align-items:center;
+justify-content:flex-start;
+gap:15px;
+padding-left:20px;
+
+}
+
+.logo{
+
+width:55px;
+height:55px;
+object-fit:contain;
+cursor:pointer;
+
+}
+
+.title-block h1{
+
+margin:0;
+font-size:24px;
+
+}
+
+.title-block p{
+
+margin:2px 0 0 0;
+font-size:14px;
+color:#ccc;
+
+}
 
 /* Header */
 

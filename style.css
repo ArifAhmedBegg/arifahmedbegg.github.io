@@ -353,3 +353,9 @@ border-radius:8px;
   font-size: 14px;
   color: #666;
 }
+
+#time-display{
+font-size:14px;
+color:#ccc;
+margin-top:5px;
+}

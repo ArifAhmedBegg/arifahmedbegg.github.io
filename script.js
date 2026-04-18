@@ -43,3 +43,19 @@ function closeImage(){
 document.getElementById("imageViewer").style.display="none";
 
 }
+
+function updateTime(){
+
+const now = new Date();
+
+const timeString = now.toLocaleTimeString();   // shows local time
+
+document.getElementById("time-display").innerText = timeString;
+
+}
+
+// update every second
+setInterval(updateTime, 1000);
+
+// run once immediately
+updateTime();

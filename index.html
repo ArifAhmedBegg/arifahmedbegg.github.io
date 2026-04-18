@@ -1,29 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arif Ahmed Begg</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<div id="imageViewer" class="viewer" onclick="closeImage()">
+<img id="viewerImg">
+</div>
+
+<body>
+
 <header>
 
 <div class="header-container">
 
-<div class="left-header">
-<img src="images/aab_logo.png" class="logo" onclick="showSection('home')">
+<img src="images/aab_logo.png" class="logo" onclick="loadSection('home')">
 
 <div class="title-block">
 <h1>Arif Ahmed Begg</h1>
 <p>Pursuing M.Sc. Chemistry | IIT Kharagpur</p>
 </div>
+
 </div>
 
 <nav>
+
 <button onclick="showSection('home')">Home</button>
 <button onclick="showSection('about')">About</button>
-<button onclick="showSection('research')">Research</button>
+<button onclick="showSection('research')">Research Interests</button>
 <button onclick="showSection('projects')">Projects</button>
 <button onclick="showSection('publications')">Publications</button>
 <button onclick="showSection('gallery')">Gallery</button>
 <button onclick="showSection('contact')">Contact</button>
+
 </nav>
 
-</div>
-
-</header>
 </header>
 
 

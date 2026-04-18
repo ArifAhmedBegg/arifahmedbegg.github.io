@@ -22,18 +22,14 @@ object-fit:contain;
 }
 
 .title-block h1{
-
 margin:0;
-font-size:24px;
-
+font-size:22px;
 }
 
 .title-block p{
-
-margin:2px 0 0 0;
-font-size:14px;
+margin:0;
+font-size:13px;
 color:#ccc;
-
 }
 
 /* Header */

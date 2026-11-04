@@ -1,1 +1,125 @@
+/* ===================== ELECTION STYLES ===================== */
+
+/* FIX: your style.css sets ".section p { text-align: justify }", which would
+   stop the election texts from centering. This line cancels it for this section only. */
+#election p { text-align: inherit; }
+
+#election {
+  --el-bg: #0f172a;
+  --el-card: rgba(255,255,255,0.06);
+  --el-border: rgba(255,255,255,0.14);
+  --el-text: #e2e8f0;
+  --el-muted: #94a3b8;
+  --el-accent: #6366f1;
+  --el-accent2: #22d3ee;
+  --el-gold: #fbbf24;
+  --el-silver: #cbd5e1;
+  --el-bronze: #f97316;
+  --el-green: #34d399;
+}
+
+#election .el-hero {
+  text-align: center;
+  padding: 36px 20px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  color: #fff;
+  background: linear-gradient(135deg, #4f46e5, #0ea5e9 60%, #22d3ee);
+  box-shadow: 0 12px 30px rgba(79,70,229,.35);
+}
+#election .el-hero h2 { margin: 6px 0; color: #fff; }
+#election .el-hero p { margin: 0; opacity: .9; }
+#election .el-hero-icon { font-size: 48px; animation: el-float 3s ease-in-out infinite; }
+@keyframes el-float { 50% { transform: translateY(-8px); } }
+
+#election .el-panel {
+  background: var(--el-bg);
+  color: var(--el-text);
+  border: 1px solid var(--el-border);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+#election .el-panel h3 { margin-top: 0; color: #fff; }
+#election .el-muted { color: var(--el-muted); }
+
+/* Buttons */
+#election .el-btn {
+  border: none; cursor: pointer; font-size: 15px; font-weight: 600;
+  padding: 12px 22px; border-radius: 12px; color: #fff;
+  background: linear-gradient(135deg, var(--el-accent), var(--el-accent2));
+  transition: transform .15s, box-shadow .15s, opacity .15s;
+}
+#election .el-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(99,102,241,.45); }
+#election .el-btn:disabled { opacity: .4; cursor: not-allowed; }
+#election .el-btn.ghost { background: transparent; border: 1px solid var(--el-border); color: var(--el-text); }
+#election .el-user { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: space-between; }
+#election .el-user img { width: 38px; height: 38px; border-radius: 50%; }
+
+/* Points legend */
+#election .el-legend { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; }
+#election .el-chip {
+  padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 700;
+  background: var(--el-card); border: 1px solid var(--el-border);
+}
+#election .el-chip b { color: var(--el-gold); }
+
+/* Candidate cards */
+#election .el-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 18px 0; }
+#election .el-cand {
+  position: relative; text-align: center; cursor: pointer;
+  background: var(--el-card); border: 2px solid var(--el-border);
+  border-radius: 16px; padding: 24px 14px 18px; color: var(--el-text);
+  transition: transform .2s, border-color .2s, background .2s;
+}
+#election .el-cand:hover { transform: translateY(-4px); border-color: var(--el-accent2); }
+#election .el-cand .el-emoji { font-size: 44px; display: block; margin-bottom: 8px; }
+#election .el-cand .el-name { font-weight: 700; font-size: 17px; color: #fff; }
+#election .el-cand .el-tag { font-size: 13px; color: var(--el-muted); margin-top: 4px; }
+#election .el-cand.picked { border-color: var(--el-accent); background: rgba(99,102,241,.18); }
+#election .el-badge {
+  position: absolute; top: -12px; right: -10px; min-width: 44px; padding: 6px 10px;
+  border-radius: 999px; font-weight: 800; font-size: 13px; color: #1e293b;
+  box-shadow: 0 4px 10px rgba(0,0,0,.4); animation: el-pop .25s ease-out;
+}
+@keyframes el-pop { from { transform: scale(0); } to { transform: scale(1); } }
+#election .el-badge.r1 { background: var(--el-gold); }
+#election .el-badge.r2 { background: var(--el-silver); }
+#election .el-badge.r3 { background: var(--el-bronze); }
+#election .el-badge.r4 { background: #a78bfa; }
+
+#election .el-msg { margin-top: 12px; font-size: 14px; min-height: 20px; }
+#election .el-msg.err { color: #f87171; }
+#election .el-msg.ok { color: var(--el-green); }
+
+/* Thank-you */
+#election .el-done { text-align: center; padding: 10px; }
+#election .el-done .el-big { font-size: 56px; }
+
+/* Report */
+#election .el-owner-tag {
+  display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 12px;
+  border-radius: 999px; background: rgba(251,191,36,.15); color: var(--el-gold); margin-bottom: 10px;
+}
+#election .el-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 16px 0 22px; }
+#election .el-stat { background: var(--el-card); border: 1px solid var(--el-border); border-radius: 14px; padding: 14px; text-align: center; }
+#election .el-stat .n { font-size: 28px; font-weight: 800; color: var(--el-accent2); }
+#election .el-stat .l { font-size: 12px; color: var(--el-muted); }
+
+#election .el-bar-row { margin: 16px 0; }
+#election .el-bar-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+#election .el-bar-track { height: 22px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; }
+#election .el-bar-fill {
+  height: 100%; width: 0; border-radius: 999px;
+  background: linear-gradient(90deg, var(--el-accent), var(--el-accent2));
+  transition: width 1.1s cubic-bezier(.2,.8,.2,1);
+}
+#election .el-bar-row.winner .el-bar-fill { background: linear-gradient(90deg, #f59e0b, var(--el-gold)); }
+
+#election table.el-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
+#election .el-table th, #election .el-table td { padding: 10px 8px; text-align: center; border-bottom: 1px solid var(--el-border); }
+#election .el-table th { color: var(--el-muted); font-weight: 600; }
+#election .el-table td:first-child, #election .el-table th:first-child { text-align: left; }
+#election .el-scroll { overflow-x: auto; }
 

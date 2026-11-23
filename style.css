@@ -100,44 +100,28 @@ color:black;
 font-weight:600;
 }
 
-/* ---------- TOOLS DROPDOWN (new) ---------- */
+/* ---------- TOOLS DROPDOWN ---------- */
 
 .tools-dropdown{
 position:relative;
-margin:6px;
+display:inline-block;
 }
 
-.tools-dropdown summary{
-display:block;
-list-style:none;
-cursor:pointer;
-user-select:none;
-color:white;
-font-size:16px;
-padding:8px 18px;
-border-radius:999px;
-border:1px solid rgba(255,255,255,0.2);
-background:rgba(255,255,255,0.06);
-transition:0.2s;
-}
+/* the "Tools" button uses the normal "nav a" pill style */
 
-.tools-dropdown summary::-webkit-details-marker{
-display:none;
-}
-
-.tools-dropdown summary:hover,
-.tools-dropdown details[open] summary{
+.tools-dropdown.open > .tools-toggle{
 background:#00bfff;
 border-color:#00bfff;
 color:black;
 }
 
 .tools-dropdown-content{
+display:none;
 position:absolute;
 top:100%;
 left:50%;
 transform:translateX(-50%);
-margin-top:8px;
+margin-top:4px;
 min-width:230px;
 padding:6px;
 background:#1a1a1a;
@@ -146,6 +130,10 @@ border-radius:12px;
 box-shadow:0 8px 20px rgba(0,0,0,0.35);
 text-align:left;
 z-index:500;
+}
+
+.tools-dropdown.open .tools-dropdown-content{
+display:block;
 }
 
 /* links inside the dropdown: plain rows, not pills */
@@ -329,21 +317,16 @@ display:block;
 margin:6px auto;
 }
 
-/* Tools dropdown on phones: centred, opens in the flow of the page */
+/* Tools dropdown on phones: opens in the flow of the page */
 .tools-dropdown{
-width:100%;
-text-align:center;
-}
-
-.tools-dropdown summary{
-display:inline-block;
+display:block;
 }
 
 .tools-dropdown-content{
 position:static;
 transform:none;
-display:inline-block;
-margin-top:6px;
+margin:4px auto;
+width:fit-content;
 }
 
 }

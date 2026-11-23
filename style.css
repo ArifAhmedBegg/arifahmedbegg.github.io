@@ -116,7 +116,6 @@ color:black;
 }
 
 .tools-dropdown-content{
-display:none;
 position:absolute;
 top:100%;
 left:50%;
@@ -132,8 +131,9 @@ text-align:left;
 z-index:500;
 }
 
-.tools-dropdown.open .tools-dropdown-content{
-display:block;
+/* closed state is controlled by the "hidden" attribute set in index.html */
+.tools-dropdown-content[hidden]{
+display:none;
 }
 
 /* links inside the dropdown: plain rows, not pills */

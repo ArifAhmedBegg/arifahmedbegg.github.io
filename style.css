@@ -318,6 +318,9 @@ margin:6px auto;
 }
 
 /* Tools dropdown on phones: opens in the flow of the page */
+.tools-dropdown > .tools-toggle{
+display:block;
+}
 .tools-dropdown{
 display:block;
 }

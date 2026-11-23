@@ -29,18 +29,19 @@
 <a href="#projects" data-section="projects">Projects</a>
 <a href="#publications" data-section="publications">Publications</a>
 
-<!-- TOOLS DROPDOWN-->
-<div class="tools-dropdown">
-    <details id="toolsMenu">
-        <summary>Tools ▾</summary>
+<!-- TOOLS DROPDOWN
+     To add a tool: save its page in the tools/ folder and add one line
+     inside the "tools-dropdown-content" div below, e.g.
+     <a href="tools/thermodynamics.html">Thermodynamics</a>              -->
+<div class="tools-dropdown" id="toolsMenu">
+    <a href="#" class="tools-toggle" aria-haspopup="true" aria-expanded="false">Tools ▾</a>
 
-        <div class="tools-dropdown-content">
-            <a href="tools/kinetics.html">Chemical Kinetics</a>
-            <!-- <a href="tools/thermodynamics.html">Thermodynamics</a> -->
-            <!-- <a href="tools/quantum.html">Quantum Chemistry</a> -->
-            <!-- <a href="tools/spectroscopy.html">Spectroscopy</a> -->
-        </div>
-    </details>
+    <div class="tools-dropdown-content">
+        <a href="tools/kinetics.html">Chemical Kinetics</a>
+        <!-- <a href="tools/thermodynamics.html">Thermodynamics</a> -->
+        <!-- <a href="tools/quantum.html">Quantum Chemistry</a> -->
+        <!-- <a href="tools/spectroscopy.html">Spectroscopy</a> -->
+    </div>
 </div>
 
 <a href="#gallery" data-section="gallery">Gallery</a>
@@ -353,6 +354,12 @@ LinkedIn:
     };
 
     var toolsMenu = document.getElementById("toolsMenu");
+    var toolsToggle = toolsMenu.querySelector(".tools-toggle");
+
+    function closeToolsMenu() {
+        toolsMenu.classList.remove("open");
+        toolsToggle.setAttribute("aria-expanded", "false");
+    }
 
     function route() {
         var id = (location.hash || "#home").slice(1);
@@ -366,7 +373,7 @@ LinkedIn:
         });
 
         document.title = (id === "home" ? "" : titles[id] + " | ") + "Arif Ahmed Begg";
-        toolsMenu.removeAttribute("open");
+        closeToolsMenu();
         window.scrollTo(0, 0);
     }
 
@@ -374,12 +381,17 @@ LinkedIn:
 
     window.addEventListener("hashchange", route);
 
-    // Close the Tools menu when clicking elsewhere or pressing Escape
+    // Tools menu: click to open/close, click elsewhere or press Escape to close
+    toolsToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        var open = toolsMenu.classList.toggle("open");
+        toolsToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
     document.addEventListener("click", function (e) {
-        if (!toolsMenu.contains(e.target)) toolsMenu.removeAttribute("open");
+        if (!toolsMenu.contains(e.target)) closeToolsMenu();
     });
     document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") toolsMenu.removeAttribute("open");
+        if (e.key === "Escape") closeToolsMenu();
     });
 
     route();

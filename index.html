@@ -38,6 +38,7 @@
 <a href="#research" data-section="research">Research Interests</a>
 <a href="#projects" data-section="projects">Projects</a>
 <a href="#publications" data-section="publications">Publications</a>
+<a href="#tools" data-section="publications">Tools</a>
 <a href="#gallery" data-section="gallery">Gallery</a>
 <a href="#contact" data-section="contact">Contact</a>
 
@@ -378,6 +379,787 @@ selection in modelling solvent effects and electronic properties.
 Work in progress...
 
 </section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #202b3c;
+}
+
+header {
+    background: #10243e;
+    color: white;
+    padding: 28px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    color: #c5d4e8;
+    margin-bottom: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+}
+
+h2 {
+    color: #17385f;
+    margin-top: 0;
+}
+
+h3 {
+    color: #254d78;
+}
+
+select, input {
+    width: 100%;
+    padding: 11px;
+    margin-top: 7px;
+    border: 1px solid #ccd5e0;
+    border-radius: 6px;
+    font-size: 15px;
+    background: white;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    background: #1766aa;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #104c83;
+}
+
+.secondary {
+    background: #64748b;
+    margin-left: 8px;
+}
+
+.equation {
+    text-align: center;
+    background: #edf3fa;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 18px 0;
+    color: #17385f;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.result-box {
+    background: #edf3fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.result-box strong {
+    display: block;
+    font-size: 21px;
+    color: #1766aa;
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #10243e;
+    color: white;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #a9d4ff;
+    text-decoration: none;
+}
+
+@media(max-width: 650px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 23px;
+    }
+
+    .chart-container {
+        height: 330px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Chemical Kinetics Simulator</h1>
+    <p>Explore reaction mechanisms through numerical simulation</p>
+    <p>Chemical Frontiers | Interactive Learning</p>
+</header>
+
+<div class="container">
+
+<!-- REACTION SELECTION -->
+
+<div class="card">
+
+<h2>1. Select Reaction Mechanism</h2>
+
+<label>Reaction type</label>
+
+<select id="mechanism" onchange="updateMechanism()">
+
+<option value="parallel">Parallel Reactions</option>
+
+<option value="reversible">Reversible Reaction</option>
+
+<option value="consecutive">Consecutive Reactions</option>
+
+</select>
+
+<div class="equation" id="equation">
+A → B and A → C
+</div>
+
+<p id="description">
+Two competing pathways consume A and produce
+two different products.
+</p>
+
+</div>
+
+
+<!-- RATE CONSTANTS -->
+
+<div class="card">
+
+<h2>2. Enter Rate Constants</h2>
+
+<div class="grid">
+
+<div>
+<label id="k1label">k₁ (s⁻¹)</label>
+<input type="number" id="k1" value="0.10" min="0" step="any">
+</div>
+
+<div id="k2box">
+<label id="k2label">k₂ (s⁻¹)</label>
+<input type="number" id="k2" value="0.05" min="0" step="any">
+</div>
+
+<div id="krbox" class="hidden">
+<label>k₋₁ (s⁻¹) - Reverse rate constant</label>
+<input type="number" id="kr" value="0.05" min="0" step="any">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- INITIAL CONCENTRATIONS -->
+
+<div class="card">
+
+<h2>3. Initial Concentrations</h2>
+
+<div class="grid">
+
+<div>
+<label>[A]₀ (mol L⁻¹)</label>
+<input type="number" id="A0" value="1" min="0" step="any">
+</div>
+
+<div>
+<label>[B]₀ (mol L⁻¹)</label>
+<input type="number" id="B0" value="0" min="0" step="any">
+</div>
+
+<div id="C0box">
+<label>[C]₀ (mol L⁻¹)</label>
+<input type="number" id="C0" value="0" min="0" step="any">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SIMULATION TIME -->
+
+<div class="card">
+
+<h2>4. Simulation Settings</h2>
+
+<label>Total simulation time (seconds)</label>
+
+<input type="number" id="tmax" value="100" min="0.001" step="any">
+
+<button onclick="simulate()">Run Simulation</button>
+
+<button class="secondary" onclick="resetValues()">Reset</button>
+
+</div>
+
+
+<!-- GRAPH -->
+
+<div class="card">
+
+<h2>5. Concentration vs Time</h2>
+
+<div class="chart-container">
+<canvas id="concentrationChart"></canvas>
+</div>
+
+</div>
+
+
+<!-- RESULTS -->
+
+<div class="card">
+
+<h2>6. Simulation Results</h2>
+
+<div id="results" class="results">
+<p>Run the simulation to see the final concentrations.</p>
+</div>
+
+<div id="extraResults"></div>
+
+</div>
+
+
+<!-- THEORY -->
+
+<div class="card">
+
+<h2>7. Understanding the Kinetics</h2>
+
+<div id="theory">
+
+<p>
+The concentration profiles describe how the reactants
+and products evolve with time.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer>
+<p>Chemical Frontiers | Exploring Chemistry Beyond the Textbook</p>
+<p><a href="../index.html">Return to Main Website</a></p>
+</footer>
+
+
+<script>
+
+// ======================================
+// REACTION MECHANISM SELECTION
+// ======================================
+
+function updateMechanism() {
+
+    let type = document.getElementById("mechanism").value;
+
+    document.getElementById("k2box").classList.remove("hidden");
+    document.getElementById("krbox").classList.add("hidden");
+    document.getElementById("C0box").classList.remove("hidden");
+
+    if(type === "parallel") {
+
+        document.getElementById("equation").innerHTML =
+        "A ──k₁──→ B &nbsp;&nbsp; A ──k₂──→ C";
+
+        document.getElementById("description").innerText =
+        "A undergoes two competing first-order reactions.";
+
+        document.getElementById("k1label").innerText = "k₁ (s⁻¹)";
+        document.getElementById("k2label").innerText = "k₂ (s⁻¹)";
+
+    }
+
+    else if(type === "reversible") {
+
+        document.getElementById("equation").innerHTML =
+        "A ⇌ B";
+
+        document.getElementById("description").innerText =
+        "A and B interconvert through forward and reverse first-order reactions.";
+
+        document.getElementById("k1label").innerText =
+        "k₁ (Forward) (s⁻¹)";
+
+        document.getElementById("k2box").classList.add("hidden");
+        document.getElementById("krbox").classList.remove("hidden");
+        document.getElementById("C0box").classList.add("hidden");
+
+    }
+
+    else {
+
+        document.getElementById("equation").innerHTML =
+        "A ──k₁──→ B ──k₂──→ C";
+
+        document.getElementById("description").innerText =
+        "A forms an intermediate B, which subsequently converts into C.";
+
+        document.getElementById("k1label").innerText = "k₁ (s⁻¹)";
+        document.getElementById("k2label").innerText = "k₂ (s⁻¹)";
+
+    }
+
+}
+
+
+// ======================================
+// NUMERICAL SOLUTION USING RK4
+// ======================================
+
+function derivatives(y, type, k1, k2, kr) {
+
+    let A = y[0];
+    let B = y[1];
+    let C = y[2] || 0;
+
+    if(type === "parallel") {
+
+        return [
+            -(k1 + k2) * A,
+            k1 * A,
+            k2 * A
+        ];
+
+    }
+
+    else if(type === "reversible") {
+
+        return [
+            -k1 * A + kr * B,
+            k1 * A - kr * B
+        ];
+
+    }
+
+    else {
+
+        return [
+            -k1 * A,
+            k1 * A - k2 * B,
+            k2 * B
+        ];
+
+    }
+
+}
+
+
+function addVectors(a, b, factor) {
+
+    return a.map((value, i) =>
+        value + factor * b[i]
+    );
+
+}
+
+
+function rk4Step(y, dt, type, k1, k2, kr) {
+
+    let f1 = derivatives(y, type, k1, k2, kr);
+
+    let f2 = derivatives(
+        addVectors(y, f1, dt / 2),
+        type, k1, k2, kr
+    );
+
+    let f3 = derivatives(
+        addVectors(y, f2, dt / 2),
+        type, k1, k2, kr
+    );
+
+    let f4 = derivatives(
+        addVectors(y, f3, dt),
+        type, k1, k2, kr
+    );
+
+    return y.map((value, i) => {
+
+        return value + dt / 6 *
+        (f1[i] + 2*f2[i] + 2*f3[i] + f4[i]);
+
+    });
+
+}
+
+
+// ======================================
+// MAIN SIMULATION
+// ======================================
+
+let chart = null;
+
+function simulate() {
+
+    let type = document.getElementById("mechanism").value;
+
+    let k1 = Number(document.getElementById("k1").value);
+    let k2 = Number(document.getElementById("k2").value);
+    let kr = Number(document.getElementById("kr").value);
+
+    let A0 = Number(document.getElementById("A0").value);
+    let B0 = Number(document.getElementById("B0").value);
+    let C0 = Number(document.getElementById("C0").value);
+
+    let tmax = Number(document.getElementById("tmax").value);
+
+    let inputs = [k1, A0, B0, tmax];
+
+    if(type !== "reversible") inputs.push(k2);
+    if(type === "reversible") inputs.push(kr);
+    if(type !== "reversible") inputs.push(C0);
+
+    if(!inputs.every(Number.isFinite) ||
+       inputs.some(x => x < 0) ||
+       tmax <= 0 ||
+       (type === "reversible" && !Number.isFinite(kr))) {
+
+        alert("Please enter valid non-negative values and a positive simulation time.");
+        return;
+    }
+
+    if(type === "reversible" && kr < 0) {
+        alert("Reverse rate constant cannot be negative.");
+        return;
+    }
+
+    let y = type === "reversible" ?
+        [A0, B0] : [A0, B0, C0];
+
+    let labels = type === "reversible" ?
+        ["A", "B"] : ["A", "B", "C"];
+
+    let time = [];
+    let data = labels.map(() => []);
+
+    // Use a sufficiently small time step
+    let steps = 2000;
+    let dt = tmax / steps;
+
+    // Store initial concentrations
+    time.push(0);
+
+    y.forEach((value, i) => {
+        data[i].push(value);
+    });
+
+    for(let i = 1; i <= steps; i++) {
+
+        y = rk4Step(y, dt, type, k1, k2, kr);
+
+        // Remove tiny negative numerical errors
+        y = y.map(value =>
+            value < 0 && value > -1e-9 ? 0 : value
+        );
+
+        if(y.some(value => !Number.isFinite(value) || value < 0)) {
+            alert("Numerical integration failed. Try a shorter simulation time or smaller rate constants.");
+            return;
+        }
+
+        time.push(i * dt);
+
+        y.forEach((value, j) => {
+            data[j].push(value);
+        });
+
+    }
+
+    drawChart(time, data, labels);
+
+    showResults(time, data, labels, type);
+
+}
+
+
+// ======================================
+// DRAW GRAPH
+// ======================================
+
+function drawChart(time, data, labels) {
+
+    let ctx = document.getElementById("concentrationChart");
+
+    if(chart) {
+        chart.destroy();
+    }
+
+    let colors = ["#1766aa", "#e05252", "#15966a"];
+
+    let datasets = labels.map((label, i) => ({
+
+        label: "[" + label + "]",
+
+        data: data[i].map((value, j) => ({
+            x: time[j],
+            y: value
+        })),
+
+        borderColor: colors[i],
+
+        backgroundColor: colors[i],
+
+        borderWidth: 2.5,
+
+        pointRadius: 0,
+
+        tension: 0.15,
+
+        fill: false
+
+    }));
+
+    chart = new Chart(ctx, {
+
+        type: "line",
+
+        data: {
+            datasets: datasets
+        },
+
+        options: {
+
+            responsive: true,
+            maintainAspectRatio: false,
+
+            interaction: {
+                intersect: false,
+                mode: "index"
+            },
+
+            plugins: {
+
+                legend: {
+                    position: "top"
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ": " +
+                            context.parsed.y.toFixed(5) + " mol L⁻¹";
+                        }
+                    }
+                }
+
+            },
+
+            scales: {
+
+                x: {
+                    type: "linear",
+                    title: {
+                        display: true,
+                        text: "Time (seconds)",
+                        font: { weight: "bold" }
+                    }
+                },
+
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "Concentration (mol L⁻¹)",
+                        font: { weight: "bold" }
+                    }
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+// ======================================
+// DISPLAY FINAL RESULTS
+// ======================================
+
+function showResults(time, data, labels, type) {
+
+    let html = "";
+
+    labels.forEach((label, i) => {
+
+        let finalValue = data[i][data[i].length - 1];
+
+        html += `
+        <div class="result-box">
+            [${label}] Final
+            <strong>${finalValue.toFixed(5)}</strong>
+            mol L⁻¹
+        </div>
+        `;
+
+    });
+
+    document.getElementById("results").innerHTML = html;
+
+    let extra = "";
+
+    if(type === "reversible") {
+
+        let k1 = Number(document.getElementById("k1").value);
+        let kr = Number(document.getElementById("kr").value);
+
+        let Aeq = (kr * (data[0][0] + data[1][0])) / (k1 + kr);
+        let Beq = (k1 * (data[0][0] + data[1][0])) / (k1 + kr);
+
+        extra = `
+        <h3>Equilibrium prediction</h3>
+        <p>For this closed, first-order reversible system:</p>
+        <p>[A] equilibrium = ${Aeq.toFixed(5)} mol L⁻¹</p>
+        <p>[B] equilibrium = ${Beq.toFixed(5)} mol L⁻¹</p>
+        <p>Equilibrium constant K = k₁/k₋₁ =
+        ${kr > 0 ? (k1/kr).toFixed(5) : "Undefined (zero reverse rate)"}</p>
+        `;
+
+    }
+
+    if(type === "consecutive") {
+
+        let maxB = Math.max(...data[1]);
+        let maxIndex = data[1].indexOf(maxB);
+
+        extra = `
+        <h3>Intermediate analysis</h3>
+        <p>Maximum concentration of B =
+        ${maxB.toFixed(5)} mol L⁻¹</p>
+        <p>Time at maximum concentration =
+        ${time[maxIndex].toFixed(4)} seconds</p>
+        `;
+
+    }
+
+    document.getElementById("extraResults").innerHTML = extra;
+
+    document.getElementById("theory").innerHTML =
+    "<p>The concentration profiles are obtained by numerically solving the differential rate equations using the fourth-order Runge-Kutta method.</p>";
+
+}
+
+
+// ======================================
+// RESET
+// ======================================
+
+function resetValues() {
+
+    document.getElementById("mechanism").value = "parallel";
+
+    document.getElementById("k1").value = 0.10;
+    document.getElementById("k2").value = 0.05;
+    document.getElementById("kr").value = 0.05;
+
+    document.getElementById("A0").value = 1;
+    document.getElementById("B0").value = 0;
+    document.getElementById("C0").value = 0;
+
+    document.getElementById("tmax").value = 100;
+
+    updateMechanism();
+
+    if(chart) {
+        chart.destroy();
+        chart = null;
+    }
+
+    document.getElementById("results").innerHTML =
+    "<p>Run the simulation to see the final concentrations.</p>";
+
+    document.getElementById("extraResults").innerHTML = "";
+
+}
+
+
+// Initialize page
+updateMechanism();
+simulate();
+
+</script>
+
 
 
 <!-- GALLERY -->

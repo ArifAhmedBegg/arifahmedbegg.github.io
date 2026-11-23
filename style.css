@@ -107,7 +107,11 @@ position:relative;
 display:inline-block;
 }
 
-/* the "Tools" button uses the normal "nav a" pill style */
+/* the "Tools" button uses the normal "nav a" pill style;
+   display:block makes its 6px margin count, so it lines up with the other pills */
+.tools-dropdown > .tools-toggle{
+display:block;
+}
 
 .tools-dropdown.open > .tools-toggle{
 background:#00bfff;
@@ -318,9 +322,6 @@ margin:6px auto;
 }
 
 /* Tools dropdown on phones: opens in the flow of the page */
-.tools-dropdown > .tools-toggle{
-display:block;
-}
 .tools-dropdown{
 display:block;
 }

@@ -146,7 +146,6 @@ footer a { color: #a9d4ff; text-decoration: none; }
 
    <div class="equation" id="equation">A ──k₁──> B &nbsp;&nbsp;&nbsp; A ──k₂──> C</div>
 
-
     <p id="description">A undergoes two competing first-order reactions.</p>
 </div>
 
@@ -222,18 +221,10 @@ footer a { color: #a9d4ff; text-decoration: none; }
     <div id="extraResults"></div>
 </div>
 
-<!-- THEORY -->
-<div class="card">
-    <h2>7. Understanding the Kinetics</h2>
-    <div id="theory">
-        <p>The concentration profiles describe how the reactants and products evolve with time.</p>
-    </div>
-</div>
-
 </div>
 
 <footer>
-    <p>Chemical Frontiers | Exploring Chemistry Beyond the Textbook</p>
+    <p>Arif Ahmed Begg</p>
     <p><a href="../index.html">Return to Main Website</a></p>
 </footer>
 
@@ -255,7 +246,7 @@ function updateMechanism() {
     if (type === "parallel") {
 
         document.getElementById("equation").innerHTML =
-            "A ──k₁──→ B &nbsp;&nbsp; A ──k₂──→ C";
+            "A ──k₁──> B &nbsp;&nbsp; A ──k₂──> C";
         document.getElementById("description").innerText =
             "A undergoes two competing first-order reactions.";
         document.getElementById("k1label").innerText = "k₁ (s⁻¹)";
@@ -265,7 +256,7 @@ function updateMechanism() {
 
         document.getElementById("equation").innerHTML = "A ⇌ B";
         document.getElementById("description").innerText =
-            "A and B interconvert through forward and reverse first-order reactions.";
+            "A and B interconvert through forward and reverse first-order reactions. Forward Rate constant is k₁ and backward rate constant is k₂";
         document.getElementById("k1label").innerText = "k₁ (Forward) (s⁻¹)";
 
         document.getElementById("k2box").classList.add("hidden");
@@ -275,7 +266,7 @@ function updateMechanism() {
     } else {
 
         document.getElementById("equation").innerHTML =
-            "A ──k₁──→ B ──k₂──→ C";
+            "A ──k₁──> B ──k₂──> C";
         document.getElementById("description").innerText =
             "A forms an intermediate B, which subsequently converts into C.";
         document.getElementById("k1label").innerText = "k₁ (s⁻¹)";

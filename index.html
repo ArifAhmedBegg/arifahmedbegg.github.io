@@ -36,7 +36,7 @@
 <div class="tools-dropdown" id="toolsMenu">
     <a href="#" class="tools-toggle" aria-haspopup="true" aria-expanded="false">Tools ▾</a>
 
-    <div class="tools-dropdown-content">
+    <div class="tools-dropdown-content" hidden>
         <a href="tools/kinetics.html">Chemical Kinetics</a>
         <!-- <a href="tools/thermodynamics.html">Thermodynamics</a> -->
         <!-- <a href="tools/quantum.html">Quantum Chemistry</a> -->
@@ -355,9 +355,11 @@ LinkedIn:
 
     var toolsMenu = document.getElementById("toolsMenu");
     var toolsToggle = toolsMenu.querySelector(".tools-toggle");
+    var toolsContent = toolsMenu.querySelector(".tools-dropdown-content");
 
     function closeToolsMenu() {
         toolsMenu.classList.remove("open");
+        toolsContent.hidden = true;
         toolsToggle.setAttribute("aria-expanded", "false");
     }
 
@@ -385,6 +387,7 @@ LinkedIn:
     toolsToggle.addEventListener("click", function (e) {
         e.preventDefault();
         var open = toolsMenu.classList.toggle("open");
+        toolsContent.hidden = !open;
         toolsToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
     document.addEventListener("click", function (e) {
